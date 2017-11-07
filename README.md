@@ -1,2 +1,2 @@
 # chipo
-chipo
+chipo chipo
