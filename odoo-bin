@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+
+import logging
+import sys
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler())
+logging.basicConfig(format='%(asctime)s 123 %(levelname)s abcd %(name)s: %(message)s')
+
+def ok_shutdown():
+    logger.info("Initiating shutdown.")
+
+if __name__ == '__main__':
+    logger.info('Fake odoo started')
+    logger.info('.modules.loading: Modules loaded.')
+    ok_shutdown()
+    sys.exit(0)
