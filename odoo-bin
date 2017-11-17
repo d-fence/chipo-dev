@@ -13,6 +13,7 @@ def ok_shutdown():
 
 if __name__ == '__main__':
     logger.info('Fake odoo started')
+    logger.info('Command line args: {}'.format(sys.argv[1:]))
     logger.info('.modules.loading: Modules loaded.')
     ok_shutdown()
     sys.exit(0)
