@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
+from datetime import datetime
 import logging
+import random
 import sys
+import time
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
 logging.basicConfig(format='%(asctime)s 123 %(levelname)s abcd %(name)s: %(message)s')
 
 def ok_shutdown():
@@ -16,13 +18,26 @@ def ko_shutdown():
     logger.error("Bad Karma")
     sys.exit(1)
 
-
 def insert_warning():
     logger.warning("This is not a wanring")
+
+def fake_tests():
+    for mod in [ 'base', 'test_access_rights', 'test_convert' , 'test_documentation_examples', 'test_mimetypes', 'anonymization', 'auth_crypt', 'base_address_city', 'base_address_extended', 'base_geolocalize' ]:
+        o_logger = logging.getLogger('odoo.modules.registry')
+        o_logger.setLevel(logging.INFO)
+        o_logger.info('module {}: creating or updating database tables'.format(mod))
+        s_time = datetime.now()
+        for i in range(random.randint(4,10)):
+            m_logger = logging.getLogger('odoo.addons.{}'.format(mod))
+            m_logger.setLevel(logging.INFO)
+            m_logger.info('test testing_something to feed the logs')
+            time.sleep(1)
+        m_logger.info('Ran 1 test in {}s'.format((datetime.now() - s_time).seconds))
 
 if __name__ == '__main__':
     logger.info('Fake odoo started')
     logger.info('Command line args: {}'.format(sys.argv[1:]))
     logger.info('.modules.loading: Modules loaded.')
+    fake_tests()
     insert_warning()
     ko_shutdown()
