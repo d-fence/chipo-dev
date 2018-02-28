@@ -18,7 +18,7 @@ def ko_shutdown():
 
 
 def insert_warning():
-    logger.warning("This is not a wanring")
+    logger.warning("This is not a warning")
 
 if __name__ == '__main__':
     logger.info('Fake odoo started')
